@@ -78,13 +78,12 @@ public class App {
 
     public static int randomNumberBetweenOneAndHundred() {
         Random random = new Random();
-        return random.nextInt(99)+1;
+        return random.nextInt(99) + 1;
 
     }
 
-    static void swapArrays(int[] arr1, int[] arr2) {
+    public static boolean swapArrays(int[] arr1, int[] arr2) {
         //lang(arr1,arr2); mit der klasse unten, geht aber glaub ich net
-        //swapArrays(lang(arr1,arr2));
         int hold = 0;
         if (lang(arr1, arr2)) {
             for (int i = 0; i < arr1.length; i++) {
@@ -92,33 +91,28 @@ public class App {
                 arr1[i] = arr2[i];
                 arr2[i] = hold;
             }
-        } else {
+            return true;
         }
-
+        return false;
     }
 
     static public boolean lang(int[] arr1, int[] arr2) {
-        boolean test;
-        if (arr1.length == arr2.length) {
-            return true;
-        } else {
-            return false;
-        }
+        return arr1.length == arr2.length;
     }
 
-    static void checkDigit(int[] arr, int ziffer) {
-        int count = 2;
+    public static int checkDigit(int[] arr) {
         int summe = 0;
-        for (int i = 0; arr.length < i; i++) {
-            summe = summe + count;
-            count++;
+        for (int i = 0; arr.length > i; i++) {
+            arr[i] = arr[i] * (i + 2);
+        }
+        for (int i = 0; arr.length > i; i++) {
+            summe = arr[i] + summe;
         }
         int rest = summe % 11;
         int diff = 11 - rest;
-        int pruf;
-        if (diff == 10) pruf = 0;
-        if (diff == 1) pruf = 5;
-        else pruf = diff;
+        if (diff == 10) return 0;
+        if (diff == 11) return 5;
+        else return diff;
     }
 
     public static int randomNumberToNine() {
